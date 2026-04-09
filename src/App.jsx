@@ -55,7 +55,7 @@ function App() {
         blockHash: data.last_switch_block.block_hash,
         blockHeight: data.current_block_height, // Current network block height
         lastSwitchBlockHeight: data.last_switch_block.block_height, // Last switch block height
-        nextBlockHeight: data.last_switch_block.block_height + 450, // Each era has ~450 blocks
+        nextBlockHeight: data.last_switch_block.block_height + 900, // Each era has ~900 blocks
         cached: data.cached,
         cacheAge: data.cache_age
       })
@@ -90,7 +90,7 @@ function App() {
       blockHash: "6f511aaa2dde00f6513f4d4c216011a273fb002dc21b808e7e703319226d9029",
       blockHeight: 5501000, // Current network block height
       lastSwitchBlockHeight: 5499162, // Last switch block height
-      nextBlockHeight: 5499162 + 450, // Each era has ~450 blocks
+      nextBlockHeight: 5499162 + 900, // Each era has ~900 blocks
       cached: false,
       cacheAge: 0
     }
@@ -157,9 +157,9 @@ function App() {
       // Calculate how many eras in the future
       const erasInFuture = target - eraData.currentEra
       
-      // Each era is approximately 2 hours (7200 seconds) and ~450 blocks
+      // Each era is approximately 2 hours (7200 seconds) and ~900 blocks
       const millisecondsPerEra = 2 * 60 * 60 * 1000
-      const blocksPerEra = 450
+      const blocksPerEra = 900
       
       // Calculate the expected time
       const expectedTime = new Date(eraData.nextSwitchBlock.getTime() + (erasInFuture - 1) * millisecondsPerEra)
@@ -207,7 +207,7 @@ function App() {
         
         // Calculate block height within current era
         const eraProgress = (targetDate.getTime() - eraStartTime.getTime()) / (eraEndTime.getTime() - eraStartTime.getTime())
-        const blocksIntoEra = Math.floor(eraProgress * 450)
+        const blocksIntoEra = Math.floor(eraProgress * 900)
         const expectedBlockHeight = eraData.lastSwitchBlockHeight + blocksIntoEra
         
         setCalculatedTime({
@@ -225,7 +225,7 @@ function App() {
       } else {
         // Target is after next era start
         const millisecondsPerEra = 2 * 60 * 60 * 1000
-        const blocksPerEra = 450
+        const blocksPerEra = 900
         
         // Calculate how many complete eras after the next era
         const erasAfterNext = Math.floor(timeDiffFromNextEra / millisecondsPerEra)
@@ -634,7 +634,7 @@ function App() {
                   )}
                   <div className="mt-3 pt-3 border-t border-cyan-500/20">
                     <p className="text-xs text-cyan-400">
-                      * Calculation based on 2-hour era duration and ~450 blocks per era. Actual values may vary due to network conditions.
+                      * Calculation based on 2-hour era duration and ~900 blocks per era. Actual values may vary due to network conditions.
                     </p>
                   </div>
                 </div>
@@ -698,7 +698,7 @@ function App() {
               </div>
               <div>
                 <p className="text-sm text-green-300 mb-1">Era Duration</p>
-                <p className="text-white">≈ 2 hours (~450 blocks)</p>
+                <p className="text-white">≈ 2 hours (~900 blocks)</p>
               </div>
             </CardContent>
           </Card>
